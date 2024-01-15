@@ -7,11 +7,11 @@ import (
 )
 
 type NotesAPI struct {
-	notesSrv notes.NotesService
+	srv notes.NotesService
 }
 
-func NewServer(notes notes.NotesService) http.Handler {
-	api := NotesAPI{notesSrv: notes}
+func NewServer(notesSrv notes.NotesService) http.Handler {
+	api := NotesAPI{srv: notesSrv}
 	mux := http.NewServeMux()
 	mux.HandleFunc("/note", api.AddNote)
 	mux.HandleFunc("/notes", api.GetNotes)
